@@ -192,8 +192,26 @@ def init_db():
         )
     """)
 
+    # ── Migrations: add new columns to existing tables ─────────────────────
+    _add_column(c, "users", "year_of_study", "TEXT DEFAULT ''")
+    _add_column(c, "users", "target_sector", "TEXT DEFAULT ''")
+    _add_column(c, "users", "career_stage",  "TEXT DEFAULT 'exploring'")
+    _add_column(c, "users", "personality_notes", "TEXT DEFAULT ''")
+    _add_column(c, "applications", "stage",         "TEXT DEFAULT 'applied'")
+    _add_column(c, "applications", "deadline",      "TEXT DEFAULT ''")
+    _add_column(c, "applications", "feedback",      "TEXT DEFAULT ''")
+    _add_column(c, "applications", "follow_up_date","TEXT DEFAULT ''")
+
     conn.commit()
     conn.close()
+
+
+def _add_column(cursor, table: str, column: str, definition: str):
+    """Add a column to a table if it doesn't already exist."""
+    try:
+        cursor.execute(f"ALTER TABLE {table} ADD COLUMN {column} {definition}")
+    except Exception:
+        pass  # Column already exists
 
 
 # ── User helpers ─────────────────────────────────────────────────────────────
