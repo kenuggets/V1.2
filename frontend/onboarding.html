@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
           <label>Location (City, Country)</label>
-          <input type="text" id="location" placeholder="London, UK" />
+          <input type="text" id="location" placeholder="Sydney, Australia" />
         </div>
       </div>
       <div style="margin-top:1.5rem;display:flex;justify-content:flex-end">
@@ -90,22 +90,43 @@
           <label>Target Sector</label>
           <select id="target_sector">
             <option value="">Select a sector</option>
-            <option>Investment Banking</option>
-            <option>Consulting</option>
-            <option>Technology / Software</option>
-            <option>Corporate Finance</option>
-            <option>Asset Management</option>
-            <option>Private Equity / Venture Capital</option>
-            <option>Law</option>
-            <option>Marketing / Advertising</option>
-            <option>Data & Analytics</option>
-            <option>I'm not sure yet</option>
+            <optgroup label="Finance">
+              <option>Investment Banking</option>
+              <option>Corporate Finance</option>
+              <option>Asset Management</option>
+              <option>Private Equity / Venture Capital</option>
+              <option>Accounting (Big 4)</option>
+              <option>Financial Planning & Wealth</option>
+            </optgroup>
+            <optgroup label="Professional Services">
+              <option>Management Consulting</option>
+              <option>Law</option>
+              <option>Actuarial</option>
+            </optgroup>
+            <optgroup label="Technology">
+              <option>Software Engineering</option>
+              <option>Product Management</option>
+              <option>Data Science & Analytics</option>
+              <option>Cybersecurity</option>
+              <option>UX / Design</option>
+            </optgroup>
+            <optgroup label="Other Industries">
+              <option>Engineering</option>
+              <option>Healthcare & Medicine</option>
+              <option>Marketing & Advertising</option>
+              <option>Media & Communications</option>
+              <option>Government & Public Policy</option>
+              <option>Non-profit & Social Impact</option>
+              <option>Real Estate</option>
+              <option>Retail & Consumer</option>
+            </optgroup>
+            <option value="unsure">I'm not sure yet</option>
           </select>
         </div>
         <div class="form-group">
           <label>Target Roles (press Enter to add)</label>
           <div class="tag-input" id="roles-tags"></div>
-          <input type="text" id="roles-input" placeholder="e.g. Investment Banking Analyst, Strategy Consultant..." onkeydown="addTag(event,'roles')" style="margin-top:0.5rem" />
+          <input type="text" id="roles-input" placeholder="e.g. Software Engineer, Strategy Consultant, Solicitor..." onkeydown="addTag(event,'roles')" style="margin-top:0.5rem" />
         </div>
       </div>
       <div style="margin-top:1.5rem;display:flex;justify-content:space-between">
@@ -121,11 +142,11 @@
         <div class="form-group">
           <label>Your Skills (press Enter to add)</label>
           <div class="tag-input" id="skills-tags"></div>
-          <input type="text" id="skills-input" placeholder="e.g. Python, Excel, Financial Modelling, Leadership..." onkeydown="addTag(event,'skills')" style="margin-top:0.5rem" />
+          <input type="text" id="skills-input" placeholder="e.g. Python, Excel, Legal Research, React, Public Speaking..." onkeydown="addTag(event,'skills')" style="margin-top:0.5rem" />
         </div>
         <div class="form-group">
           <label>Experience (roles, societies, projects — brief summary)</label>
-          <textarea id="experience" placeholder="e.g. Treasurer, Finance Society (2023-24); Data Analysis intern at Acme Corp (Summer 2024); Personal coding project — built a stock screener in Python..."></textarea>
+          <textarea id="experience" placeholder="e.g. Vice President, Law Society (2024); Software Engineering intern at Atlassian (Summer 2024); Treasurer, Finance & Investment Club; Personal project — built a full-stack app with React and Node..."></textarea>
         </div>
       </div>
       <div style="margin-top:1.5rem;display:flex;justify-content:space-between">

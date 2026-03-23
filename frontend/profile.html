@@ -51,15 +51,28 @@
           <div class="form-group"><label>Graduation Year</label><input type="text" id="p-grad" placeholder="2026" /></div>
         </div>
         <div class="grid-2">
-          <div class="form-group"><label>Location</label><input type="text" id="p-location" placeholder="London, UK" /></div>
+          <div class="form-group"><label>Location</label><input type="text" id="p-location" placeholder="Sydney, Australia" /></div>
           <div class="form-group"><label>Target Sector</label>
             <select id="p-sector">
               <option value="">Select</option>
-              <option>Investment Banking</option><option>Consulting</option>
-              <option>Technology / Software</option><option>Corporate Finance</option>
-              <option>Asset Management</option><option>Private Equity / Venture Capital</option>
-              <option>Law</option><option>Marketing / Advertising</option>
-              <option>Data & Analytics</option><option>I'm not sure yet</option>
+              <optgroup label="Finance">
+                <option>Investment Banking</option><option>Corporate Finance</option>
+                <option>Asset Management</option><option>Private Equity / Venture Capital</option>
+                <option>Accounting (Big 4)</option><option>Financial Planning & Wealth</option>
+              </optgroup>
+              <optgroup label="Professional Services">
+                <option>Management Consulting</option><option>Law</option><option>Actuarial</option>
+              </optgroup>
+              <optgroup label="Technology">
+                <option>Software Engineering</option><option>Product Management</option>
+                <option>Data Science & Analytics</option><option>Cybersecurity</option>
+              </optgroup>
+              <optgroup label="Other Industries">
+                <option>Engineering</option><option>Healthcare & Medicine</option>
+                <option>Marketing & Advertising</option><option>Government & Public Policy</option>
+                <option>Non-profit & Social Impact</option><option>Real Estate</option>
+              </optgroup>
+              <option value="unsure">I'm not sure yet</option>
             </select>
           </div>
         </div>

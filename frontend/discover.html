@@ -38,23 +38,38 @@
   <!-- ── Tab: Role Explorer ── -->
   <div class="tab-content active" id="tab-explore">
     <div style="display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap">
-      <select id="sector-filter" onchange="loadRoles()" style="max-width:220px">
+      <select id="sector-filter" onchange="loadRoles()" style="max-width:240px">
         <option value="">All sectors</option>
-        <option>Investment Banking</option>
-        <option>Consulting</option>
-        <option>Technology</option>
-        <option>Corporate Finance</option>
-        <option>Asset Management</option>
-        <option>Private Equity</option>
-        <option>Law</option>
-        <option>Marketing</option>
-        <option>Data & Analytics</option>
+        <optgroup label="Finance">
+          <option>Investment Banking</option>
+          <option>Corporate Finance</option>
+          <option>Asset Management</option>
+          <option>Private Equity</option>
+          <option>Accounting (Big 4)</option>
+        </optgroup>
+        <optgroup label="Professional Services">
+          <option>Management Consulting</option>
+          <option>Law</option>
+          <option>Actuarial</option>
+        </optgroup>
+        <optgroup label="Technology">
+          <option>Software Engineering</option>
+          <option>Product Management</option>
+          <option>Data Science & Analytics</option>
+          <option>Cybersecurity</option>
+        </optgroup>
+        <optgroup label="Other">
+          <option>Engineering</option>
+          <option>Healthcare</option>
+          <option>Marketing</option>
+          <option>Government & Policy</option>
+        </optgroup>
       </select>
       <button class="btn btn-ghost btn-sm" onclick="openGenerateModal()">✨ Generate role profile</button>
     </div>
     <div class="grid-3" id="roles-grid">
       <div class="card" style="text-align:center;padding:3rem;grid-column:1/-1;color:var(--muted)">
-        <p>Generate a role profile to start exploring. Try "Investment Banking Analyst" or "Strategy Consultant".</p>
+        <p>Generate a role profile to start exploring. Try "Investment Banking Analyst", "Software Engineer at Atlassian", or "Solicitor at MinterEllison".</p>
         <button class="btn btn-primary btn-sm" style="margin-top:1rem" onclick="openGenerateModal()">Get started →</button>
       </div>
     </div>
@@ -72,15 +87,15 @@
       <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-end">
         <div class="form-group" style="flex:1;min-width:180px">
           <label>Role 1</label>
-          <input type="text" id="cmp-1" placeholder="Investment Banking Analyst" />
+          <input type="text" id="cmp-1" placeholder="e.g. Investment Banking Analyst" />
         </div>
         <div class="form-group" style="flex:1;min-width:180px">
           <label>Role 2</label>
-          <input type="text" id="cmp-2" placeholder="Management Consultant" />
+          <input type="text" id="cmp-2" placeholder="e.g. Software Engineer" />
         </div>
         <div class="form-group" style="flex:1;min-width:180px">
           <label>Role 3 (optional)</label>
-          <input type="text" id="cmp-3" placeholder="Corporate Finance Analyst" />
+          <input type="text" id="cmp-3" placeholder="e.g. Management Consultant" />
         </div>
         <button class="btn btn-primary" onclick="compareRoles()">Compare →</button>
       </div>
@@ -100,11 +115,11 @@
       <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-end">
         <div class="form-group" style="flex:2;min-width:200px">
           <label>Role to simulate</label>
-          <input type="text" id="sim-role" placeholder="e.g. Investment Banking Analyst" />
+          <input type="text" id="sim-role" placeholder="e.g. Software Engineer, Solicitor, IB Analyst..." />
         </div>
         <div class="form-group" style="flex:1;min-width:160px">
           <label>Company (optional)</label>
-          <input type="text" id="sim-company" placeholder="e.g. Goldman Sachs" />
+          <input type="text" id="sim-company" placeholder="e.g. Atlassian, MinterEllison, Macquarie..." />
         </div>
         <button class="btn btn-primary" onclick="startSimulation()">Start simulation →</button>
       </div>
@@ -135,7 +150,7 @@
       <div style="display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap">
         <div class="form-group" style="flex:1;min-width:220px">
           <label>Target Role</label>
-          <input type="text" id="gap-role" placeholder="e.g. Investment Banking Analyst" />
+          <input type="text" id="gap-role" placeholder="e.g. Software Engineer, Solicitor, IB Analyst..." />
         </div>
         <button class="btn btn-primary" onclick="runSkillsGap()">Analyse my profile →</button>
       </div>
@@ -151,7 +166,7 @@
       <div style="display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap">
         <div class="form-group" style="flex:1;min-width:220px">
           <label>Target Role</label>
-          <input type="text" id="roadmap-role" placeholder="e.g. Strategy Consultant" />
+          <input type="text" id="roadmap-role" placeholder="e.g. Software Engineer, Solicitor, Strategy Consultant..." />
         </div>
         <button class="btn btn-primary" onclick="generateRoadmap()">Build my roadmap →</button>
       </div>
@@ -171,20 +186,35 @@
     <div style="display:flex;flex-direction:column;gap:1rem">
       <div class="form-group">
         <label>Role Title</label>
-        <input type="text" id="gen-title" placeholder="e.g. Investment Banking Analyst" />
+        <input type="text" id="gen-title" placeholder="e.g. Software Engineer, Solicitor, IB Analyst..." />
       </div>
       <div class="form-group">
         <label>Sector</label>
         <select id="gen-sector">
-          <option>Investment Banking</option>
-          <option>Consulting</option>
-          <option>Technology</option>
-          <option>Corporate Finance</option>
-          <option>Asset Management</option>
-          <option>Private Equity</option>
-          <option>Law</option>
-          <option>Marketing</option>
-          <option>Data & Analytics</option>
+          <optgroup label="Finance">
+            <option>Investment Banking</option>
+            <option>Corporate Finance</option>
+            <option>Asset Management</option>
+            <option>Private Equity</option>
+            <option>Accounting (Big 4)</option>
+          </optgroup>
+          <optgroup label="Professional Services">
+            <option>Management Consulting</option>
+            <option>Law</option>
+            <option>Actuarial</option>
+          </optgroup>
+          <optgroup label="Technology">
+            <option>Software Engineering</option>
+            <option>Product Management</option>
+            <option>Data Science & Analytics</option>
+            <option>Cybersecurity</option>
+          </optgroup>
+          <optgroup label="Other">
+            <option>Engineering</option>
+            <option>Healthcare</option>
+            <option>Marketing</option>
+            <option>Government & Policy</option>
+          </optgroup>
         </select>
       </div>
       <button class="btn btn-primary w-full" onclick="generateRole()">Generate profile ✨</button>
@@ -198,6 +228,8 @@
 const userId = localStorage.getItem('userId');
 if (!userId) location.href = '/signup.html';
 document.getElementById('nav-name').textContent = (localStorage.getItem('userName') || 'You').split(' ')[0];
+// Load cached roles on page open
+window.addEventListener('DOMContentLoaded', loadRoles);
 
 const simMessages = [];
 
@@ -210,6 +242,24 @@ function switchTab(name) {
 // ── Role Explorer ──
 function openGenerateModal()  { document.getElementById('generate-modal').classList.remove('hidden'); }
 function closeGenerateModal() { document.getElementById('generate-modal').classList.add('hidden'); }
+
+async function loadRoles() {
+  const sector = document.getElementById('sector-filter').value;
+  try {
+    const res = await fetch(`/api/discover/roles${sector ? '?sector=' + encodeURIComponent(sector) : ''}`);
+    const data = await res.json();
+    const grid = document.getElementById('roles-grid');
+    if (!data.roles || data.roles.length === 0) {
+      grid.innerHTML = `<div class="card" style="text-align:center;padding:3rem;grid-column:1/-1;color:var(--muted)">
+        <p>No roles cached for this sector yet. Generate a profile above to get started.</p>
+        <button class="btn btn-primary btn-sm" style="margin-top:1rem" onclick="openGenerateModal()">Generate role profile →</button>
+      </div>`;
+      return;
+    }
+    grid.innerHTML = '';
+    data.roles.forEach(p => renderRoleCard(p, false));
+  } catch(e) { /* silent fail — roles grid just stays as-is */ }
+}
 
 async function generateRole() {
   const title  = document.getElementById('gen-title').value.trim();
@@ -227,7 +277,7 @@ async function generateRole() {
   } catch(e) { showToast('Error generating profile.', 'error'); }
 }
 
-function renderRoleCard(p) {
+function renderRoleCard(p, autoShow = true) {
   const grid = document.getElementById('roles-grid');
   // Remove placeholder
   const placeholder = grid.querySelector('[style*="grid-column"]');
@@ -238,11 +288,11 @@ function renderRoleCard(p) {
   card.innerHTML = `
     <div class="role-sector">${p.sector}</div>
     <h4>${p.title}</h4>
-    <p>${(p.description||'').substring(0,80)}...</p>
+    <p>${(p.description||'').substring(0,100)}...</p>
   `;
   card.onclick = () => showRoleDetail(p);
   grid.appendChild(card);
-  showRoleDetail(p);
+  if (autoShow) showRoleDetail(p);
 }
 
 function showRoleDetail(p) {

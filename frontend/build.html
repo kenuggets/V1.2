@@ -141,7 +141,7 @@
       <div style="display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap">
         <div class="form-group" style="flex:1;min-width:220px">
           <label>Target Role</label>
-          <input type="text" id="ec-role" placeholder="e.g. Management Consultant" />
+          <input type="text" id="ec-role" placeholder="e.g. Software Engineer, Solicitor, IB Analyst..." />
         </div>
         <button class="btn btn-primary" onclick="getECGuide()">Get guide →</button>
       </div>
@@ -178,12 +178,12 @@
     <div class="modal-header"><h3>Add Application</h3><button class="modal-close" onclick="closeAppModal()">×</button></div>
     <div style="display:flex;flex-direction:column;gap:1rem">
       <div class="grid-2">
-        <div class="form-group"><label>Role Title</label><input type="text" id="a-title" placeholder="Investment Banking Analyst" /></div>
-        <div class="form-group"><label>Company</label><input type="text" id="a-company" placeholder="Goldman Sachs" /></div>
+        <div class="form-group"><label>Role Title</label><input type="text" id="a-title" placeholder="e.g. Software Engineer, Solicitor, IB Analyst..." /></div>
+        <div class="form-group"><label>Company</label><input type="text" id="a-company" placeholder="e.g. Atlassian, MinterEllison, Macquarie..." /></div>
       </div>
       <div class="grid-2">
         <div class="form-group"><label>Platform</label>
-          <select id="a-platform"><option value="manual">Manual</option><option value="linkedin">LinkedIn</option><option value="indeed">Indeed</option><option value="handshake">Handshake</option><option value="company_site">Company site</option></select>
+          <select id="a-platform"><option value="manual">Manual</option><option value="linkedin">LinkedIn</option><option value="seek">Seek</option><option value="indeed">Indeed</option><option value="handshake">Handshake</option><option value="grad_connection">GradConnection</option><option value="company_site">Company site</option></select>
         </div>
         <div class="form-group"><label>Deadline</label><input type="date" id="a-deadline" /></div>
       </div>
