@@ -6,6 +6,50 @@
   <title>Launchpad — Land your first internship</title>
   <link rel="stylesheet" href="/static/style.css" />
   <style>
+    /* Globe hero */
+    .hero-globe-wrap {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 8rem 1.5rem 5rem;
+    }
+    #globe-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Radial fade so globe blends into page */
+    .hero-globe-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 30%, #060606 80%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Bottom edge fade into next section */
+    .hero-globe-wrap::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to bottom, transparent, #060606);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 720px;
+    }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 0.5rem;
       font-size: 0.75rem; font-weight: 500; color: var(--muted);
@@ -21,6 +65,17 @@
     .hero-stats div { text-align: center; }
     .hero-stats .n { font-family: 'DM Sans', sans-serif; font-size: 1.6rem; font-weight: 300; color: var(--white); display: block; letter-spacing: 0.02em; }
     .hero-stats .l { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em; }
+
+    /* Step-through animation on Start Exploring */
+    @keyframes stepPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.18); }
+      60%  { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+    .feature-card.step-active {
+      outline: 1px solid rgba(255,255,255,0.35);
+      animation: stepPulse 0.8s ease forwards;
+    }
 
     /* Alternating feature sections */
     .feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; padding: 5rem 0; border-top: 1px solid var(--border); }
@@ -62,18 +117,21 @@
 </script>
 
 <!-- Hero -->
-<section class="hero">
-  <div class="hero-eyebrow">For university students targeting their first internship</div>
-  <h1>Land your<br>first <em>internship</em></h1>
-  <p>From "I have no idea what I want" to signed offer — a structured system for every stage of your career journey.</p>
-  <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
-    <a href="/signup.html" class="btn btn-primary btn-lg">Start for free</a>
-    <a href="#how" class="btn btn-outline btn-lg">See how it works</a>
-  </div>
-  <div class="hero-stats">
-    <div><span class="n">10,000+</span><span class="l">Live roles across LinkedIn, Indeed & Handshake</span></div>
-    <div><span class="n">Expert-led</span><span class="l">Insights from professionals at top firms</span></div>
-    <div><span class="n">1,000+</span><span class="l">Offers landed at Goldman, McKinsey & more</span></div>
+<section class="hero hero-globe-wrap">
+  <canvas id="globe-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">For university students targeting their first internship</div>
+    <h1>Land your<br>first <em>internship</em></h1>
+    <p style="max-width:480px;margin:0 auto 2rem">From "I have no idea what I want" to signed offer — a structured system for every stage of your career journey.</p>
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+      <button onclick="startExploring()" class="btn btn-primary btn-lg">Start exploring</button>
+      <a href="/signup.html" class="btn btn-outline btn-lg">Get started free</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="n">10,000+</span><span class="l">Live roles across LinkedIn, Indeed & Handshake</span></div>
+      <div><span class="n">Expert-led</span><span class="l">Insights from professionals at top firms</span></div>
+      <div><span class="n">1,000+</span><span class="l">Offers landed at Goldman, McKinsey & more</span></div>
+    </div>
   </div>
 </section>
 
@@ -232,6 +290,26 @@
   <div style="font-size:0.78rem;color:var(--muted)">Helping university students land their first internship.</div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="/static/globe.js"></script>
 <script src="/static/glow.js"></script>
+<script>
+function startExploring() {
+  // Scroll to the #how section
+  const how = document.getElementById('how');
+  if (how) how.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // After scroll settles, pulse each framework card in sequence
+  setTimeout(() => {
+    const cards = document.querySelectorAll('#how .feature-card');
+    cards.forEach((card, i) => {
+      setTimeout(() => {
+        card.classList.add('step-active');
+        setTimeout(() => card.classList.remove('step-active'), 1200);
+      }, i * 500);
+    });
+  }, 700);
+}
+</script>
 </body>
 </html>
